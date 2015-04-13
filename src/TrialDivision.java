@@ -28,7 +28,6 @@ public class TrialDivision {
 	
 	public static LinkedList<BigInteger> tdFactors(BigInteger n)
 	{
-		int counter = 0;
 	    BigInteger two = BigInteger.valueOf(2);
 	    LinkedList<BigInteger> fs = new LinkedList<BigInteger>();
 
@@ -54,18 +53,15 @@ public class TrialDivision {
 	                fs.add(f);
 	                n = n.divide(f);
 	                fs.add(n);
-	                //System.out.println("F: " + f);
 	                break;
 	            }
 	            else
 	            {
 	                f = f.add(two);
 	            }
-	            counter++;
 	        }
 	        fs.add(n);
 	    }
-	    //System.out.println(counter);
 	    return fs;
 	}
 }
