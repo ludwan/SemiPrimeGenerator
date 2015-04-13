@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class PrimePower {
+public class SemiPrime {
 
 	private static int n = 100;
 	private static ArrayList<BigInteger> used = new ArrayList<BigInteger>();
