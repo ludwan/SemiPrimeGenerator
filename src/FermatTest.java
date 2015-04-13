@@ -21,7 +21,6 @@ public class FermatTest {
 		}
 		
 		
-		FermatFactor(new BigInteger(args[0]));
 	}
 
 	public static LinkedList<BigInteger> FermatFactor(BigInteger N) {
@@ -55,68 +54,22 @@ public class FermatTest {
 		return false;
 	}
 
-	public static BigInteger bigIntSqRootFloor(BigInteger x)
-			throws IllegalArgumentException {
-		if (x.compareTo(BigInteger.ZERO) < 0) {
-			throw new IllegalArgumentException("Negative argument.");
-		}
-		// square roots of 0 and 1 are trivial and
-		// y == 0 will cause a divide-by-zero exception
-		if (x.equals(BigInteger.ZERO) || x.equals(BigInteger.ONE)) {
-			return x;
-		} // end if
-		BigInteger two = BigInteger.valueOf(2L);
-		BigInteger y;
-		// starting with y = x / 2 avoids magnitude issues with x squared
-		for (y = x.divide(two); y.compareTo(x.divide(y)) > 0; y = ((x.divide(y))
-				.add(y)).divide(two))
-			;
-		return y;
-	} // end bigIntSqRootFloor
+	
+	public static BigInteger sqrt(BigInteger n) {
+		BigInteger r = BigInteger.ZERO;
+		BigInteger m = r.setBit(2 * n.bitLength());
+		BigInteger nr;
 
-	public static BigInteger bigIntSqRootCeil(BigInteger x)
-			throws IllegalArgumentException {
-		if (x.compareTo(BigInteger.ZERO) < 0) {
-			throw new IllegalArgumentException("Negative argument.");
-		}
-		// square roots of 0 and 1 are trivial and
-		// y == 0 will cause a divide-by-zero exception
-		if (x == BigInteger.ZERO || x == BigInteger.ONE) {
-			return x;
-		} // end if
-		BigInteger two = BigInteger.valueOf(2L);
-		BigInteger y;
-		// starting with y = x / 2 avoids magnitude issues with x squared
-		for (y = x.divide(two); y.compareTo(x.divide(y)) > 0; y = ((x.divide(y))
-				.add(y)).divide(two))
-			;
-		if (x.compareTo(y.multiply(y)) == 0) {
-			return y;
-		} else {
-			return y.add(BigInteger.ONE);
-		}
+		do {
+			nr = r.add(m);
+			if (nr.compareTo(n) != 1) {
+				n = n.subtract(nr);
+				r = nr.add(m);
+			}
+			r = r.shiftRight(1);
+			m = m.shiftRight(2);
+		} while (m.bitCount() != 0);
 
-	}
-
-	public static BigInteger sqrt(BigInteger x) throws IllegalArgumentException {
-		if (x.compareTo(BigInteger.ZERO) < 0) {
-			throw new IllegalArgumentException("Negative argument.");
-		}
-		// square roots of 0 and 1 are trivial and
-		// y == 0 will cause a divide-by-zero exception
-		if (x == BigInteger.ZERO || x == BigInteger.ONE) {
-			return x;
-		} // end if
-		BigInteger two = BigInteger.valueOf(2L);
-		BigInteger y;
-		// starting with y = x / 2 avoids magnitude issues with x squared
-		for (y = x.divide(two); y.compareTo(x.divide(y)) > 0; y = ((x.divide(y))
-				.add(y)).divide(two))
-			;
-		if (x.compareTo(y.multiply(y)) == 0) {
-			return y;
-		} else {
-			return y.add(BigInteger.ONE);
-		}
+		return r;
 	}
 }

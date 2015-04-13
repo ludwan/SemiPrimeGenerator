@@ -87,12 +87,18 @@ public class SemiPrime {
 		int primeSize = size / 2;
 		Random r = new Random();
 
+		
 		while (used.size() < n) {
 			BigInteger p1 = BigInteger.probablePrime(primeSize, r);
 			BigInteger p2 = p1.nextProbablePrime();
+			for(int i = 0; i < 100;i++){
+				p2 = p2.nextProbablePrime();
+			}
+			p2 = p2.nextProbablePrime();
+			//BigInteger p2 = BigInteger.probablePrime(primeSize, r);
 			BigInteger semiPrime = p2.multiply(p1);
 
-			if (semiPrime.bitLength() == size && !used.contains(semiPrime)) {
+			if (semiPrime.bitLength() == size && !used.contains(semiPrime)){
 				used.add(semiPrime);
 				writer.println(semiPrime);
 				System.out.println("Nr: " + used.size() + " semiPrime: "
