@@ -60,12 +60,12 @@ public class SemiPrime {
 	}
 
 	private static void generateSafeSize(int size) {
-		int primeSize1 = (size / 10) * 6;
+		int primeSize1 = (size / 10) * 6;	//TODO Oklart hur stor skillnad det ska va på dessa
 		int primeSize2 = (size / 10) * 4;
 		Random r = new Random();
 
 		while (used.size() < n) {
-			BigInteger p1 = BigInteger.probablePrime(primeSize1, r);
+			BigInteger p1 = BigInteger.probablePrime(primeSize1, r);	
 			BigInteger p2 = BigInteger.probablePrime(primeSize2, r);
 			BigInteger semiPrime = p2.multiply(p1);
 
@@ -106,7 +106,7 @@ public class SemiPrime {
 	}
 
 	private static void generateAssymetricalSize(int size) {
-		int primeSize1 = (size / 10) * 9;
+		int primeSize1 = (size / 10) * 9;	//TODO oklarthur stor skillnad det ska va på dessa.
 		int primeSize2 = (size / 10) * 1;
 		Random r = new Random();
 
